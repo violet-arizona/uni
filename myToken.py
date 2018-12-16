@@ -28,25 +28,34 @@ class Tokenizer(object):
         if not isinstance(text, str):
             raise TypeError('Input must be string type')
         
-        tokens = [] #empty list of objects aka tokens
-        for i, item in enumerate(text):  #"for" loop iterates over a sequence of symbols in string, saving a symbol and its id
-            nowLetter = item.isalpha() #true if current symbol is alphabetic
-            lastIsLetter = text[i-1].isalpha() #true if previous symbol is alphabetic
+        # empty list of objects aka tokens
+        tokens = []
+        # "for" loop iterates over a sequence of symbols in string, saving a symbol and its id
+        for i, item in enumerate(text):
+            # true if current symbol is alphabetic
+            nowLetter = item.isalpha()
             
-            if(len(text)==1 and nowLetter): #checks if string contains only 1 letter
-                token = Token(i, text)
+            # if current symbol is alphabetic and previous isn't, we save index where a new word starts
+            if(nowLetter and (i==0 or not lastIsLetter)):
+                wordStart = i
+            # if current symbol is not alphabetic and previous is, we create a new object Token
+            elif(i!=0 and not nowLetter and lastIsLetter): 
+                token = Token(wordStart, text[wordStart:i])
+                # adds new token to the list of tokens
                 tokens.append(token)
-            elif(nowLetter and (i==0 or not lastIsLetter)): #if current symbol is alphabetic and previous isn't
-                wordStart = i #saves index where a new word starts
-            elif(i!=0 and not nowLetter and lastIsLetter): # if current symbol is not alphabetic and previous is
-                token = Token(wordStart, text[wordStart:i]) #creates a new object Token
-                tokens.append(token) #adds new token to the list of tokens
-            elif(i+1==len(text) and nowLetter): #checks the last symbol in string
+                
+            # checks the last symbol in string
+            if(i+1==len(text) and nowLetter):
                 token = Token(wordStart, text[wordStart:i+1])
                 tokens.append(token)
-        return tokens #returns final list of tokens
 
-if __name__ == '__main__': #doesn't execute when importing
+            # true if previous symbol is alphabetic
+            lastIsLetter = nowLetter
+        # returns final list of tokens 
+        return tokens
+
+# doesn't execute when importing
+if __name__ == '__main__':
     t = Tokenizer()
     myTokens = t.tokenize("-Мама, помой раму! - сказала дочь.")
     for token in myTokens:
