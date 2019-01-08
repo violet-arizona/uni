@@ -19,6 +19,7 @@ class Database(object):
         # input file is opened for reading
         myFile = open(fileTxt, "r", encoding="UTF-8")
         toTok = myFile.read()
+        myFile.close()
         # input file is tokenized
         data = fullTok.Tokenizer().tokenizeCat(toTok)
         # list of token's positions
@@ -38,6 +39,7 @@ class Database(object):
                 db[key] = l
 
         print(dict(db))
+        return dict(db)
         # database is closed
         db.close()
 
