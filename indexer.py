@@ -4,6 +4,7 @@ Indexer module is used for creating a database of words and numbers with their s
 import shelve
 import fullTok
 
+
 class Database(object):
     """
     Class Database provides a method for creating a database out of a text file.
@@ -39,7 +40,6 @@ class Database(object):
                 db[key] = l
 
         print(dict(db))
-        return dict(db)
         # database is closed
         db.close()
 
