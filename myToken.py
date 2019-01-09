@@ -1,9 +1,12 @@
 """
 myToken module is used for spliting text into words a.k.a. tokens.
 """
-class Token:
+
+
+class Token(object):
     """
-    Class Token uses __init__ construction, which generates a new object. These objects consist of a word and it's starting position.
+    Class Token uses __init__ construction, which generates a new object.
+    These objects consist of a word and it's starting position.
     """
     def __init__(self, pos, word):
         """
@@ -14,14 +17,16 @@ class Token:
         self.pos = pos
         self.word = word
 
+
 class Tokenizer(object):
     """
     Class Tokenizer provides a method for text-tokenization.
     """
     def tokenize(self, text):
         """
-        Reads an input string symbol by symbol and defines wheather it is alphabetic or not. Breaks the input string into substrings of alphabetical symbols 
-        (tokens), records the position of the first symbol.
+        Reads an input string symbol by symbol and defines wheather it is alphabetic or not.
+        Breaks the input string into substrings of alphabetical symbols (tokens),
+        records the position of the first symbol.
         :param text: input string
         :return: list of tokens
         """

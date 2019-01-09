@@ -11,7 +11,8 @@ class Database(object):
     """
     def toDB(self, fileDB, fileTxt):
         """
-        Reads an input file and tokenizes it. If a token's type is alphabetical or numerical, records it into a database.
+        Reads an input file and tokenizes it.
+        If a token's type is alphabetical or numerical, records it into a database.
         :param fileDB: name of database files that will be created
         :param fileTxt: name of an input text file
         """
