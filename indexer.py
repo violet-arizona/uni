@@ -31,8 +31,7 @@ class Database(object):
             # if token is alphabetical or numerical, puts it into the database
             if(token.cat == "digit" or token.cat == "word"):
                 # if same token is already in the database, adds new position
-                db.setdefault(token.tok, {})
-                db[token.tok].setdefault(path.basename(fileTxt), []).append(token.pos)
+                db.setdefault(token.tok, {}).setdefault(path.basename(fileTxt), []).append(token.pos)
 
         print(dict(db))
         # database is closed
